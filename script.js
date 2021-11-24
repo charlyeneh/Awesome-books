@@ -18,3 +18,37 @@ function addBook(title, author) {
   localStorage.setItem('books', JSON.stringify(booksCollection));
 }
 
+function handleChange() {
+  addBook(bookTitle.value, bookAuthor.value);
+}
+
+function removeBook() {
+  const bookClass = window.event.target.className.split('-')[1];
+  document.querySelector(`.div-${bookClass}`).style.display = 'none';
+  const bookId = window.event.target.id;
+  const newbooksCollection = booksCollection.filter((book) => book.id !== parseInt((bookId), 10));
+  booksCollection = newbooksCollection;
+  localStorage.setItem('books', JSON.stringify(newbooksCollection));
+}
+
+addBtn.addEventListener('click', (e) => {
+  e.preventDefault();
+  booksContainer.innerHTML = booksCollection.map((col, obj) => `
+  <div class="div-${obj}">
+  <p>${col.title}</p>
+  <p>${col.author}</p>
+  <button class="btn-${obj}" id="${col.id}" onclick="removeBook()">Remove</button>
+  <hr>
+  </div>`).join('');
+  bookTitle.value = '';
+  bookAuthor.value = '';
+});
+
+document.addEventListener('DOMContentLoaded', () => {
+  booksContainer.innerHTML = booksCollection.map((col, obj) => `<div class="div-${obj}">
+  <p>${col.title}</p>
+  <p>${col.author}</p>
+  <button class="btn-${obj}" id="${col.id}" onclick="removeBook()">Remove</button>
+  <hr>
+  </div>`).join('');
+});
