@@ -2,7 +2,7 @@
 
 # Awesome Books
 
-> In this project, I build a basic website- Awesome Books: plain JavaScript with objects, that allows users to add/remove books from a list.
+> In this project, I built a basic website - Awesome Books: plain JavaScript with objects, that allows users to add/remove books from a list.
 
 ![screenshot](./app_screenshot.png)
 
